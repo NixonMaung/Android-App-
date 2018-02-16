@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DietaryZ</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=default-width; user-scalable=no"/>
+    <meta http-equiv="Content-type" content="text/html;charset=utf-8">
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.js"></script>
+    <script type="text/javascript"
+            src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js"></script>
+
+
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript">app.initialize();</script>
+
+</head>
+<h1> DietaryZ </h1>
+<body>
+<!-- Start of first page: help Page -->
+<div data-role="page" id="Help" data-theme="a">
+
+    <div data-role="header" data-theme="b">
+        <h1> DietaryZ </h1>
+    </div><!-- /header -->
+
+    <div data-role="collapsibleset" data-theme="a" data-content-theme="b">
+
+        <table>
+            <tr>
+                <td><input type="button" value=" Home " data-theme="b" onclick="redirectHome()"
+                           data-theme="a" data-icon="home"></td>
+                <td><h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp help </h2>
+                </td>
+            </tr>
+        </table>
+
+        <div data-role="collapsible">
+            <h2>Weighed Food Records</h2>
+            <ul data-role="listview" data-filter="true" data-filter-theme="a"
+                data-divider-theme="b">
+                <li>Widely used method</li>
+                <li>Precision of portion sizes</li>
+                <li>High respondent burden</li>
+                <li>Mis-reporting</li>
+                <li>Expensive</li>
+            </ul>
+        </div>
+        <div data-role="collapsible">
+            <h2>Estimated Food Records</h2>
+            <ul data-role="listview" data-filter="true" data-filter-theme="a"
+                data-divider-theme="b">
+                <li>Food composition data limited</li>
+                <li>household measures such as cups or spoons</li>
+                <li>food photographs</li>
+                <li>food models</li>
+                <li>Widely used method</li>
+            </ul>
+        </div>
+        <div data-role="collapsible">
+            <h2>Food Frequency Questionnaires (FFQ) and semi-quantitative FFQs</h2>
+            <ul data-role="listview" data-filter="true" data-filter-theme="a"
+                data-divider-theme="b">
+                <li>Food composition data limited</li>
+                <li>household measures such as cups or spoons</li>
+                <li>food photographs</li>
+                <li>food models</li>
+                <li>Widely used method</li>
+            </ul>
+        </div>
+        <div data-role="collapsible">
+            <h2> Multiple Pass Recall</h2>
+            <ul data-role="listview" data-filter="true" data-filter-theme="a"
+                data-divider-theme="b">
+                <li>Widely used method</li>
+                <li>Precision of portion sizes</li>
+                <li>High respondent burden</li>
+                <li>Mis-reporting</li>
+                <li>Expensive</li>
+            </ul>
+        </div>
+        <div data-role="collapsible">
+            <h2>Household Food Surveys</h2>
+            <ul data-role="listview" data-filter="true" data-filter-theme="a"
+                data-divider-theme="b">
+                <li>Food composition data limited</li>
+                <li>household measures such as cups or spoons</li>
+                <li>food photographs</li>
+                <li>food models</li>
+                <li>Widely used method</li>
+            </ul>
+        </div>
+        <div data-role="collapsible">
+            <h2> Methods measuring nutritional status (non biological)</h2>
+            <ul data-role="listview" data-filter="true" data-filter-theme="a"
+                data-divider-theme="b">
+                <li>Widely used method</li>
+                <li>Precision of portion sizes</li>
+                <li>High respondent burden</li>
+                <li>Mis-reporting</li>
+                <li>Expensive</li>
+            </ul>
+        </div>
+        <div data-role="collapsible">
+            <h2>Derivation of Portion Size</h2>
+            <ul data-role="listview" data-filter="true" data-filter-theme="a"
+                data-divider-theme="b">
+                <li>Food composition data limited</li>
+                <li>household measures such as cups or spoons</li>
+                <li>food photographs</li>
+                <li>food models</li>
+                <li>Widely used method</li>
+            </ul>
+        </div>
+        <div data-role="collapsible">
+            <h2>Single observation provides poor measure of individual intake</h2>
+            <ul data-role="listview" data-filter="true" data-filter-theme="a"
+                data-divider-theme="b">
+                <li>Food composition data limited</li>
+                <li>household measures such as cups or spoons</li>
+                <li>food photographs</li>
+                <li>food models</li>
+                <li>Widely used method</li>
+            </ul>
+        </div>
+        <div data-role="collapsible">
+            <h2>Issues Relating to Dietary Assessment</h2>
+            <ul data-role="listview" data-filter="true" data-filter-theme="a"
+                data-divider-theme="b">
+                <li>Food composition data limited</li>
+                <li>household measures such as cups or spoons</li>
+                <li>food photographs</li>
+                <li>food models</li>
+                <li>Widely used method</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div data-role="footer" data-theme="b">
+        <table align="center">
+            <tr>
+                <td>
+                    COMP1661&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                </td>
+                <td align="right">
+                    <input type="button" value="FAQ" onclick="redirectFAQ()"
+                           data-theme="a"
+                           data-icon="alert"></td>
+                <td><input type="button" value="Feedback" onclick="feedback()" data-theme="a"
+                           data-icon="grid">
+                </td>
+            </tr>
+        </table>
+    </div><!-- /footer -->
+
+</div>
+</body><!--(Javascript), 2009)-->
+</html>

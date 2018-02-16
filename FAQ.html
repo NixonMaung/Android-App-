@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"><!--  (Mann, 2010)-->
+<head>
+    <title>DietaryZ</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=default-width; user-scalable=no"/>
+    <meta http-equiv="Content-type" content="text/html;charset=utf-8">
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.js"></script>
+    <script type="text/javascript"
+            src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js"></script>
+
+
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript">app.initialize();</script>
+
+</head>
+<body>
+
+<!-- Start of first page: FAQ page -->
+<div data-role="page" id="faq" data-theme="a">
+
+    <div data-role="header" data-theme="b">
+        <h1> DietaryZ </h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+
+        <table>
+            <tr>
+                <td><input type="button" value=" Home " data-theme="b" onclick="redirectHome()"
+                           data-theme="a" data-icon="home"></td>
+                <td><h2 align="center"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    FAQ </h2></td>
+            </tr><!-- /home button & page title -->
+        </table> <!-- /Page title -->
+
+        <div data-role="content" data-theme="b">
+
+            <table data-role="table" id="table-column-toggle" data-mode="columntoggle"
+                   class="ui-responsive table-stroke">
+
+                <thead>
+                <tr>
+                    <th data-priority="2">Rank</th>
+                    <th>FAQ Title</th>
+                    <th data-priority="3">Year</th>
+                    <th data-priority="1"><abbr title="Rotten Tomato Rating">Rating</abbr></th>
+                    <th data-priority="5">Reviews</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <th>1</th>
+                    <td><a href="https://en.wikipedia.org/wiki/Angie%27s_List" data-rel="external">Does
+                        Angie's List ?</a></td>
+                    <td>1941</td>
+                    <td>100%</td>
+                    <td>74</td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td><a href="https://en.wikipedia.org/wiki/Portal:Contents"
+                           data-rel="external">How do I Unsubscribe?</a></td>
+                    <td>1942</td>
+                    <td>97%</td>
+                    <td>64</td>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <td><a href="https://en.wikipedia.org/wiki/Wikipedia:FAQ/Editing"
+                           data-rel="external">How
+                        do I Change?</a></td>
+                    <td>1972</td>
+                    <td>97%</td>
+                    <td>87</td>
+                </tr>
+                <tr>
+                    <th>4</th>
+                    <td><a href="https://en.wikipedia.org/wiki/Wikipedia:Community_portal"
+                           data-rel="external">How Does Angie’s ?</a></td>
+                    <td>1939</td>
+                    <td>96%</td>
+                    <td>87</td>
+                </tr>
+                <tr>
+                    <th>5</th>
+                    <td><a href="http://en.wikipedia.org/wiki/Lawrence_of_Arabia_(film)"
+                           data-rel="external">Licenses, Bonds </a></td>
+                    <td>1962</td>
+                    <td>94%</td>
+                    <td>87</td>
+                </tr>
+                <tr>
+                    <th>6</th>
+                    <td><a href="http://en.wikipedia.org/wiki/Dr._Strangelove" data-rel="external">Login
+                        Trouble Guide</a></td>
+                    <td>1964</td>
+                    <td>92%</td>
+                    <td>74</td>
+                </tr>
+                <tr>
+                    <th>7</th>
+                    <td><a href="https://en.wikipedia.org/wiki/Marriage_license"
+                           data-rel="external">Online
+                        Comments Policy</a></td>
+                    <td>1967</td>
+                    <td>91%</td>
+                    <td>122</td>
+                </tr>
+                <tr>
+                    <th>8</th>
+                    <td><a href="https://en.wikipedia.org/wiki/Privacy_policy"
+                           data-rel="external">Privacy Policy</a></td>
+                    <td>1939</td>
+                    <td>90%</td>
+                    <td>72</td>
+                </tr>
+                <tr>
+                    <th>9</th>
+                    <td><a href="https://en.wikipedia.org/wiki/Singin%27..."
+                           data-rel="external">Singin' in the Rain</a></td>
+                    <td>1952</td>
+                    <td>89%</td>
+                    <td>85</td>
+                </tr>
+                <tr>
+                    <th>10</th>
+                    <td class="title"><a href="https://en.wikipedia.org/wiki/Privacy"
+                                         data-rel="external">Privacy</a></td>
+                    <td>2010</td>
+                    <td>84%</td>
+                    <td>78</td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div><!-- /FAQ table -->
+
+    </div><!-- /content -->
+
+    <div data-role="footer" data-theme="b">
+        <table align="center">
+            <tr>
+                <td>
+                    COMP1661&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                </td>
+                <td align="right">
+                    <input type="button" value="help" onclick="redirectHelp()"
+                           data-theme="a"
+                           data-icon="alert"></td>
+                <td><input type="button" value="Feedback" onclick="feedback()" data-theme="a"
+                           data-icon="grid">
+                </td>
+            </tr>
+        </table>
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+</body><!--   (Jones and Jones, 2011)  -->
+</html>

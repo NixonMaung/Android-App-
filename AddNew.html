@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DietaryZ</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=default-width; user-scalable=no"/>
+    <meta http-equiv="Content-type" content="text/html;charset=utf-8">
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.js"></script>
+    <script type="text/javascript"
+            src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js"></script>
+
+
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript">app.initialize();</script>
+
+</head>
+<h1> DietaryZ </h1>
+<body>
+
+<!-- Start of first page: AddNew Page -->
+<div data-role="page" id="bar" data-theme="a">
+    <div data-role="header" data-theme="b">
+        <h1> DietaryZ </h1>
+    </div><!-- /header -->
+
+    <table align="center">
+        <!-- /Home button & title.
+        this is a home and tittle of the current page which mean, the home has onclick method that has assigned to redirect to home page,
+          once user will clicks the home simply method will extricute and take user to the home back
+          the title is Insert new data this is simply the h2 title.-->
+        <tr>
+            <td><input type="button" value=" Home " onclick="redirectHome()" data-theme="b"
+                       data-icon="home"></td>
+            <td><h2 align="center"> Insert New Data</h2></td>
+        </tr>
+        <!-- /Food Name. food name is not a label used. this is just simple word which mean just word and five spaces
+        and asterisk. so that when user sees the asterisk then they know this is a required field so that we must entered the value
+        hence, after that their will be edit text called tx food name which has size of 55 letters and edit text type is text which mean user input
+        in thia edit text on key up has set up with is alphabet method. this is called from app.js java scrip class
+         it only make sure that user input will be only text and not any thing apart from text-->
+        <tr>
+            <td>Food Name:&nbsp&nbsp&nbsp&nbsp*</td>
+            <td><input id="txFoodName" type="text" size="55"
+                       onkeyup="isAlphabet(document.getElementById('txFoodName'), 'Letters Only Please')"
+                       required placeholder="Food name">
+                <label hidden id="Label1" style='color:red;' runat="server">
+                    <b hidden></b> </label></td>
+        </tr>
+        <!-- /Food Group drop down list set up as select option. this drop down list has 7 input options which include
+        select option this option is disabled and selected so that once the current page is load "Select "
+         option is selected and user will not allowed to select it again, user can only select this items from drop down list
+         which include dairy, fruit, meat, bread and other
+         -->
+        <tr>
+            <td>Food Group:&nbsp&nbsp&nbsp&nbsp*</td>
+            <td><select id="txFoodGroup" data-native-menu="false" required required data-theme="b">
+                <option value="" disabled selected>Select</option><!-- (Thornton, 2017) -->
+                <option value="Dairy">Dairy</option>
+                <option value="Fruits">Fruits</option>
+                <option value="Meat">Meat</option>
+                <option value="Bread">Bread</option>
+                <option value="Other">Other</option>
+            </select><label hidden id="Label2" style='color:red;' runat="server">
+            </label></td>
+        </tr>
+        <!-- /Meal type  drop down list set up as select option. this drop down list has 5 input options which include
+                select option this option is disabled and selected so that once the current page is load "Select "
+                 option is selected and user will not allowed to select it again, user can only select this items from drop down list
+                 which include Breakfast, lunch, dinner and other
+                 -->
+        <tr>
+            <td>Meal Types:</td>
+            <td><select id="txMealTypes" data-native-menu="false" required required data-theme="b">
+                <option value="">Select</option>
+                <option value="Breakfast">Breakfast</option> <!-- (Kay, 2017) -->
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Other">Other</option>
+            </select></td>
+        </tr>
+        <!-- /Time picker will pop up for a user to chose for various time from easy to use and user friendly time picker
+         once user is click the submit button, validation method will called to check all required fields have valid value and not
+           empty string , the author set set the label , which id is label 4 and this label is hidden from user
+           display it will only show when a user leave the time edit field empty and click the submit button-->
+        <tr>
+
+            <td>
+                Time:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp*
+            </td>
+            <td><input id="txTime" type="time">
+                <label hidden id="Label4" hidden="false" style='color:red;' runat="server">
+                </label></td>
+            </td>
+        </tr>
+        <!-- /Date picker will pop up for a user to chose for various date from easy to use and user friendly date picker
+         once user is click the submit button, validation method will called to check all required fields have valid value and not
+         empty string , the author set set the label , which id is label 4 and this label is hidden from user
+         display it will only show when a user leave the time edit field empty and click the submit button-->
+        <tr>
+            <td>
+                Date:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp*
+            </td>
+            <td><input id="txDate" type="date">
+                <label hidden id="Label5" hidden="false" style='color:red;' runat="server">
+                </label></td>
+        </tr>
+        <!-- /Note edit text is not a label used. this is just simple word which mean just word and five spaces
+                and not a asterisk. so that when user sees not the asterisk then they know this is a not required field so that user may and may not entered the value
+                hence, after that their will be edit text called tx note edit which has size of a5 letters and edit text type is text which mean user input
+                in this edit text on key up validation was not set up like food name.
+                 it only make sure that user input will be anything -->
+        <tr>
+            <td>Notes:</td>
+            <td><textarea id="txNotes" rows="5" cols="25" placeholder="Notes"></textarea>
+            </td>
+        </tr>
+        <!-- /Reporter Name is not a label used. this is just simple word which mean just word and nine spaces
+                and asterisk. so that when user sees the asterisk then they know this is a required field so that we must entered the value
+                hence, after that their will be edit text called tx Reporter Name which has size of 55 letters and edit text type is text which mean user input
+                in thia edit text on key up has set up with is alphabet method. this is called from app.js java scrip class
+                 it only make sure that user input will be only text and not any thing apart from text-->
+        <tr>
+            <td>Reporter:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp*</td>
+            <td><input id="txReporter"
+                       onkeyup="isAlphabet(document.getElementById('txReporter'), 'Letters Only Please')"
+                       type="text" placeholder="Name of the reporter">
+                <label hidden id="Label3" style='color:red;' runat="server">
+                </label></td>
+        </tr>
+        <tr>
+            <td><input type="button" value=" Return  " data-theme="b"
+                       onclick="redirectHome()" data-icon="back"></td>
+            <td><input id="btnAdd" type="button" value="Add Record" onclick="validate(this.id)"
+                       data-theme="b" data-icon="check"></td>
+        </tr><!-- /Add & Cancel buttons -->
+    </table><!-- /Add new data form -->
+
+    <div data-role="footer" data-theme="b" style="clear: both">
+
+        <table align="center">
+            <tr>
+                <td>
+                    COMP1661&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                </td>
+                <td align="right">
+                    <input type="button" value="FAQ" onclick="redirectFAQ()"
+                           data-theme="b"
+                           data-icon="alert"></td>
+                <td><input type="button" value="Feedback" onclick="feedback()" data-theme="b"
+                           data-icon="grid">
+                </td>
+            </tr>
+        </table>
+
+    </div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>

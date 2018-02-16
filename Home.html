@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DietaryZ</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=default-width; user-scalable=no"/>
+    <meta http-equiv="Content-type" content="text/html;charset=utf-8">
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.js"></script>
+    <script type="text/javascript"
+            src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js"></script>
+
+
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript">app.initialize();</script>
+
+</head><!--  (CSS, 2012)   -->
+<body>
+
+<!-- Start of first page: Home Page -->
+<div data-role="page" id="Home" data-theme="c">
+
+    <div data-role="header" data-theme="b">
+        <h1> DietaryZ </h1>
+    </div><!-- /header -->
+    <table align="center" width="60%">
+        <tr>
+            <td><input type="button" value="Home" onclick="redirectHome()"
+                       data-theme="b" data-icon="home"></td>
+            <td><input type="button" value="Add"
+                       data-theme="b" onclick="redirectAddNew()" data-icon="action"></td>
+            <td><input type="button" value="Filter"
+                       data-theme="b" onclick="openFilter()" data-icon="carat-d"></td>
+            <td><input type="button" value="Reset" onclick="DeleteAll()"
+                       data-theme="b"
+                       data-icon="power"></td>
+        </tr><!-- /home, Add & help buttons  -->
+    </table>
+    <table id="filter" hidden>
+        <tr>
+            <td>
+                <select id="dwFoodName" data-theme="c" data-icon="carat-d"
+                        onchange="dwFoodName(this.value);">
+                    <option value="1" disabled selected>Name</option>
+                </select>
+            </td>
+            <td>
+                <select id="dwFoodGroups" data-theme="c" data-icon="carat-d"
+                        onchange="dwFoodGroups(this.value);">
+                    <option value="1" disabled selected>Group</option>
+                </select>
+            </td>
+            <td>
+                <select id="dwDate" data-theme="c" data-icon="carat-d"
+                        onchange="dwDate(this.value);">
+                    <option value="1" disabled selected>Date</option>
+                </select>
+            </td>
+            <td>
+                <select id="dwReporter" data-theme="c" data-icon="carat-d"
+                        onchange="dwReporter(this.value);">
+                    <option value="1" disabled selected>Rep.</option>
+                </select>
+            </td>
+        </tr>
+    </table><!-- /home buttons --><!--  (Tech-lutions, 2017)   -->
+    <div data-role="content">
+
+        <ul data-role="listview" data-inset="true" data-filter-theme="c" data-filter="true"
+            id="myNewListView"
+            data-icon="edit" data-theme="b" data-split-icon="gear" data-split-theme="a"
+            data-divider-theme="c">
+
+
+        </ul><!-- /List view  (Thornton, 2017)-->
+
+        <div data-role="popup" id="popupMainMenu" data-theme="b"><!--  (venkat, 2012)   -->
+            <ul data-role="listview" data-inset="true" style="min-width:210px">
+                <li data-role="list-divider"><h2> Choose an action</h2></li>
+                <li data-icon="grid"><a href="Home.html#Report">Read Report</a></li>
+                <li data-icon="edit"><a href="Home.html#Update">Update Record</a></li>
+                <li data-icon="bars"><a href="#" onclick="callNotePage()">Add Note</a></li>
+                <li data-icon="delete"><a href="#" onclick="DeleteFromDB()">Delete</a></li>
+                <li data-icon="carat-r"><a href="#" data-rel="back">Close</a></li>
+            </ul>
+        </div>
+    </div><!-- /content -->
+    <br><br><br><br>
+    <div data-role="footer" data-theme="b">
+        <table align="center">
+            <tr>
+                <td>
+                    COMP1661
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                </td>
+                <td><input type="button" value="help" onclick="redirectHelp()"
+                           data-theme="b" data-icon="gear"></td>
+
+                <td align="right">
+                    <input type="button" value="FAQ" onclick="redirectFAQ()"
+                           data-theme="b"
+                           data-icon="info"></td>
+
+                <td><input type="button" value="Feedback" onclick="feedback()" data-theme="b"
+                           data-icon="mail">
+                </td>
+            </tr>
+        </table>
+
+
+    </div><!-- /footer -->
+
+</div><!-- /Page -->
+
+
+<!-- Start of second page: Update Page-->
+<div data-role="page" id="Update" data-theme="a" data-divider-theme="b">
+    <div data-role="header" data-theme="b">
+        <h1> DietaryZ </h1>
+    </div><!-- /header -->
+
+
+    <table align="center">
+        <!-- /Home button & title.
+this is a home and tittle of the current page which mean, the home has onclick method that has assigned to redirect to home page,
+  once user will clicks the home simply method will extricute and take user to the home back
+  the title is Insert new data this is simply the h2 title.-->
+        <tr>
+            <td><input type="button" value=" Home " data-theme="b" onclick="redirectHome()"
+                       data-theme="a" data-icon="home"></td>
+            <td><h2 align="center"> Update Data </h2></td>
+        </tr><!-- /Home button & title -->
+        <!-- /Food Name. food name is not a label used. this is just simple word which mean just word and five spaces
+and asterisk. so that when user sees the asterisk then they know this is a required field so that we must entered the value
+hence, after that their will be edit text called tx food name which has size of 55 letters and edit text type is text which mean user input
+in thia edit text on key up has set up with is alphabet method. this is called from app.js java scrip class
+ it only make sure that user input will be only text and not any thing apart from text-->
+        <tr>
+            <td hidden><input id="txId" type="text" hidden></td>
+            <td>Food Name:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp*</td>
+            <td><input id="txFoodName" type="text" size="55"
+                       onkeyup="isAlphabet(document.getElementById('txFoodName'), 'Letters Only Please')"
+                       required placeholder="Food name">
+                <label hidden id="Label1" style='color:red;' runat="server">
+                    <b hidden></b> </label></td>
+        </tr><!-- /Food Name-->
+        <!-- /Food Group drop down list set up as select option. this drop down list has 7 input options which include
+select option this option is disabled and selected so that once the current page is load "Select "
+ option is selected and user will not allowed to select it again, user can only select this items from drop down list
+ which include dairy, fruit, meat, bread and other
+ -->
+        <tr>
+            <td>Food Group:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp*</td>
+            <td>
+                <select id="txFoodGroup" data-native-menu="false" data-theme="b"
+                        data-icon="carat-d">
+                    <option value="" disabled selected>Select</option>
+                    <option value="Dairy">Dairy</option>
+                    <option value="Fruits">Fruits</option>
+                    <option value="Meat">Meat</option>
+                    <option value="Bread">Bread</option>
+                    <option value="Other">Other</option>
+                </select>
+                <label id="Label2" style='color:red;' runat="server">
+                    <b hidden> Please, select the food group.</b></label></td>
+        </tr><!-- /Food Group -->
+        <!-- /Meal type  drop down list set up as select option. this drop down list has 5 input options which include
+        select option this option is disabled and selected so that once the current page is load "Select "
+         option is selected and user will not allowed to select it again, user can only select this items from drop down list
+         which include Breakfast, lunch, dinner and other
+         -->
+        <tr>
+            <td>Meal Types:</td>
+            <td><select id="txMealTypes" data-native-menu="false" data-theme="b"
+                        data-icon="carat-d">
+                <option value="">Select</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Other">Other</option>
+            </select></td>
+        </tr><!-- /Meal Types -->
+        <!-- /Time picker will pop up for a user to chose for various time from easy to use and user friendly time picker
+ once user is click the submit button, validation method will called to check all required fields have valid value and not
+   empty string , the author set set the label , which id is label 4 and this label is hidden from user
+   display it will only show when a user leave the time edit field empty and click the submit button-->
+        <tr>
+            <td>
+                Time:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp*
+            </td>
+            <td><input id="txTime" required type="time" name="time" placeholder="Time"
+                       pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$"
+                       class="inputs time" required data-theme="a">
+                <label id="Label4" hidden="false" style='color:red;' runat="server">
+                    <b hidden> Please, select time.</b></label></td>
+            </td>
+        </tr><!-- /Time-->
+        <!-- /Date picker will pop up for a user to chose for various date from easy to use and user friendly date picker
+ once user is click the submit button, validation method will called to check all required fields have valid value and not
+ empty string , the author set set the label , which id is label 4 and this label is hidden from user
+ display it will only show when a user leave the time edit field empty and click the submit button-->
+        <tr>
+            <td>
+                Date:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp*
+            </td>
+            <td><input id="txDate" required type="date" placeholder="Date" data-theme="a">
+                <label hidden id="Label5" hidden="false" style='color:red;' runat="server">
+                    <b hidden> Please, select date.</b></label></td>
+        </tr><!-- /Date -->
+        <!-- /Note edit text is not a label used. this is just simple word which mean just word and five spaces
+        and not a asterisk. so that when user sees not the asterisk then they know this is a not required field so that user may and may not entered the value
+        hence, after that their will be edit text called tx note edit which has size of a5 letters and edit text type is text which mean user input
+        in this edit text on key up validation was not set up like food name.
+         it only make sure that user input will be anything -->
+        <tr>
+            <td>Notes:</td>
+            <td>
+                <input id="txNotes" type="text" placeholder="Notes">
+
+            </td>
+        </tr><!-- /Notes -->
+        <!-- /Reporter Name is not a label used. this is just simple word which mean just word and nine spaces
+        and asterisk. so that when user sees the asterisk then they know this is a required field so that we must entered the value
+        hence, after that their will be edit text called tx Reporter Name which has size of 55 letters and edit text type is text which mean user input
+        in thia edit text on key up has set up with is alphabet method. this is called from app.js java scrip class
+         it only make sure that user input will be only text and not any thing apart from text-->
+        <tr>
+            <td>Reporter:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp*</td>
+            <td><input id="txReporter"
+                       onkeyup="isAlphabet(document.getElementById('txReporter'), 'Letters Only Please')"
+                       type="text" placeholder="Name of the reporter" data-theme="a">
+                <label id="Label3" style='color:red;' runat="server">
+                    <b hidden> Please, give reporter name.</b></label></td>
+        </tr><!-- /Reporter -->
+    </table>
+    <table>
+        <tr>
+            <td><input type="button" value="Return" onclick="refreshHome()"
+                       data-theme="b" data-icon="back"></td>
+            <td><input type="button" value="Note" onclick="callNotePage()" data-theme="b"
+                       data-icon="bullets"></td>
+            <td><input id="btnUpdate" type="button" value="Save" data-theme="b"
+                       onclick="validate(this.id)" data-icon="check"></td>
+            <td><input type="button" value="Delete" onclick="DeleteFromDB()" data-theme="b"
+                       data-icon="delete"></td>
+        </tr><!-- /Update & Add Note buttons -->
+    </table><!-- /Update data form -->
+
+
+    <div data-role="footer" data-theme="b">
+        <table align="center">
+            <tr>
+                <td>
+                    COMP1661
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                </td>
+                <td align="right"><!--(Robin, 2010)  -->
+                    <input type="button" value="FAQ" onclick="redirectFAQ()"
+                           data-theme="b"
+                           data-icon="info"></td>
+                <td><input type="button" value="Feedback" onclick="feedback()" data-theme="b"
+                           data-icon="mail">
+                </td>
+            </tr>
+        </table>
+
+
+    </div><!-- /footer -->
+</div><!-- /page -->
+
+
+<!-- Start of Third page: Note Page-->
+<div data-role="page" id="Note" data-theme="a" data-divider-theme="b">
+
+    <div data-role="header" data-theme="b">
+        <h1> DietaryZ </h1>
+    </div><!-- /header -->
+
+    <table align="center">
+        <!-- /Home button & title, in this session programmer is mainly focus on page navigation,
+         for example home button is there on top of the page so that user can easily go back to main page        -->
+        <tr>
+            <td><input type="button" value=" Home " data-theme="b" onclick="redirectHome()"
+                       data-icon="home"></td>
+            <td><h2 align="center"> Description </h2></td>
+        </tr>
+        <!-- /Food ranking drop down list with starts icon display, so that user can easily known this is for rating.
+         the food ranking has 5 options which is excellent, good, fair, poor and select which user can not select from drop down list-->
+        <tr>
+            <td>Food Ranking:</td>
+            <td><select id="txFoodRanking" data-native-menu="false" data-icon="star" required
+                        data-theme="b" size="55">
+                <option value="" disabled selected>Select</option>
+                <option value="Poor">Poor</option>
+                <option value="Fair">Fair</option>
+                <option value="Good">Good</option>
+                <option value="Excellent">Excellent</option>
+            </select></td>
+        </tr>
+        <!-- /Portion size is made with radio button which has three options small, medium and large
+         these radio buttons are check automatically from the database table, for example when user select radio button and clicks submit button
+         it will save on database and when user select particular record it will load portion size from databse and display it
+         on note page-->
+        <tr>
+            <td>Portion size:</td>
+            <td>
+                <fieldset data-role="controlgroup" data-theme="b" data-divider-theme="c"
+                          data-type="horizontal">
+                    <input type="radio" name="radio-choice-h-2" id="r1"
+                           value="Small" checked="checked">
+                    <label for="r1">Small</label>
+                    <input type="radio" name="radio-choice-h-2" id="r2"
+                           value="Medium">
+                    <label for="r2">Medium</label>
+                    <input type="radio" name="radio-choice-h-2" id="r3"
+                           value="Large">
+                    <label for="r3">Large</label>
+                </fieldset>
+            <td hidden><input id="txPortionSize" type="text"></td>
+            </td>
+        </tr>
+        <!-- for user frindly design calories is build with range bar also with number edit text assign to it
+         for example, when user started more the range bar the number on edit text also change according to range bar
+          -->
+        <tr>
+            <td hidden><input id="txCaloriesNumber" value="50" type="text">
+                <!-- (Demos version, 2017)-->
+            <td><label for="txCalories">Calories:(g)</label>
+            </td>
+            <td>
+                <input type="range" name="slider" data-theme="b" id="txCalories" value="0"
+                       min="50" max="1000">
+            </td>
+        </tr>
+        <!-- /Description edit text is not a label used. this is just simple word which mean just word and no spaces
+         and not a asterisk. so that when user sees not the asterisk then they know this is a not required field so that user may and may not entered the value
+         hence, after that their will be edit text called tx Description edit which has size of a letters and edit text type is text which mean user input
+         in this edit text on key up validation was not set up like food name.
+          it only make sure that user input will be anything -->
+        <tr>
+            <td>Description:</td>
+            <td><textarea id="txDescription" rows="2" cols="30"
+                          placeholder="Description"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div data-role="collapsible" data-icon="camera" data-theme="b"
+                     data-divider-theme="c">
+                    <h3>Picture</h3>
+                    <ul data-role="listview" data-icon="camera">
+                        <li data-icon="camera">
+                            <a href="#" data-icon="camera" onclick="takePhoto();">Camera</a>
+                        </li>
+                        <li data-icon="delete">
+                            <a href="#" onclick="DeletePhoto();">Delete</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <div id="imageContainer"></div>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span id="image"></span>
+            </td>
+            <td hidden><textarea id="txImage" rows="22" cols="55"></textarea></td>
+        </tr>
+        <tr>
+            <td>Social media:</td>
+            <td>
+                <!-- Facebook -->
+                <a href="http://www.facebook.com/sharer.php?u=www.dietaryZ.co.uk" target="_blank">
+                    <img src="https://simplesharebuttons.com/images/somacro/facebook.png"
+                         alt="Facebook"/>
+                </a>
+                <!-- Twitter -->
+                <a class="twitter-hashtag-button"
+                   href="https://twitter.com/intent/tweet?button_hashtag= Hello, I am using DietaryZ now. www.dietaryZ.co.uk">
+                    <img src="https://simplesharebuttons.com/images/somacro/twitter.png"
+                         alt="Twitter"/></a>
+                <!-- LinkedIn -->
+                <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=www.Home.html&amp; text=This is my twiceter.  &amp;"
+                   target="_blank">
+                    <img src="https://simplesharebuttons.com/images/somacro/linkedin.png"
+                         alt="LinkedIn"/>
+                </a>
+                <!-- Pinterest -->
+                <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());">
+                    <img src="https://simplesharebuttons.com/images/somacro/pinterest.png"
+                         alt="Pinterest"/>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="button" value=" Return " data-theme="b" onclick="redirectHome()"
+                       data-icon="back"></td>
+            <td>
+                <input type="button" value="Save" data-theme="b" onclick="UpdateNote()"
+                       data-icon="check">
+            </td>
+        </tr>
+    </table><!-- /Update Note data form -->
+
+    <div data-role="footer" data-theme="b">
+        <table align="center">
+            <tr>
+                <td>
+                    COMP1661
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                </td>
+                <td align="right">
+                    <input type="button" value="FAQ" onclick="redirectFAQ()"
+                           data-theme="b"
+                           data-icon="info"></td>
+                <td><input type="button" value="Feedback" onclick="feedback()" data-theme="b"
+                           data-icon="mail">
+                </td>
+            </tr>
+        </table>
+
+
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+<!-- Start of Fourth page: Report Page-->
+<div data-role="page" id="Report" data-theme="c">
+
+    <div data-role="header" data-theme="b">
+        <h1> DietaryZ </h1>
+    </div><!-- /header -->
+
+
+    <table align="center" data-role="table" id="table-column-toggle" data-mode=""
+           class="ui-responsive table-stroke">
+        <tbody>
+        <!-- /Home button & title.
+this is a home and tittle of the current page which mean, the home has onclick method that has assigned to redirect to home page,
+once user will clicks the home simply method will extricute and take user back to the home
+the title is Report this is simply the h2 title.-->
+        <tr>
+
+            <td><input type="button" value=" Home " data-theme="b" onclick="redirectHome()"
+                       data-theme="a" data-icon="home"></td>
+            <td><h2>&nbsp&nbsp&nbspReport </h2></td>
+        </tr>
+        <!-- -->
+        <!-- label food name will added the food name text from database once user clicks from list view
+          -->
+        <tr>
+            <td><b>Food Name: </b></td>
+            <td>
+                <label id="lbFoodname"></label>
+            </td>
+        </tr>
+        <!-- label food group  will added the food group text from database once user clicks from main list view
+          by calling the my function method, my function method will load all fields with value once the user select the
+          from list view-->
+        <tr>
+            <td><b>Food Group:</b></td>
+            <td>
+                <label id="lbFoodGroup"></label>
+            </td>
+        </tr>
+        <!-- label date and time will added the food group text from database once user clicks from main list view
+    by calling the my function method, my function method will load all fields with value once the user select the
+    from list view-->
+        <tr>
+            <td><b>Date & Time: </b></td>
+            <td><label id="lbTime"></label></td>
+        </tr>
+        <tr>
+            <td><b>Reporter Name:</b></td>
+            <td><label id="lbReporter"></label></td>
+        </tr>
+        <!-- label food ranking will added the food group text from database once user clicks from main list view
+   by calling the my function method, my function method will load all fields with value once the user select the
+   from list view-->
+        <tr>
+            <td><b>Food Ranking : </b></td>
+            <td><label id="lbRanking"></label></td>
+        </tr>
+        <!-- label Picture will added the food group text from database once user clicks from main list view
+       by calling the my function method, my function method will load all fields with value once the user select the
+       from list view-->
+        <tr>
+            <td><b>Picture </b>
+                <p><span id="images" data-icon="image"></span></p>
+            </td>
+            <p>
+            <td>
+                <b>Description</br></br> </b>
+                <span id="spDescription" data-icon="image"></span>
+            </td>
+            </p>
+        </tr>
+        <tr>
+            <td><input type="button" value=" Return  " data-theme="b"
+                       onclick="redirectHome()" data-icon="back"></td>
+            <td><input type="button" value="Update" onclick="redirectUpdate()"
+                       data-theme="b" data-icon="edit"></td>
+        </tr><!-- /Add & Cancel buttons -->
+        </tbody>
+    </table>
+    <!-- /FAQ table -->
+
+    <div data-role="footer" data-theme="b">
+        <table align="center">
+            <tr>
+                <td>
+                    COMP1661&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                </td>
+                <td align="right">
+                    <input type="button" value="FAQ" onclick="redirectFAQ()"
+                           data-theme="a"
+                           data-icon="alert"></td>
+                <td><input type="button" value="Feedback" onclick="feedback()" data-theme="a"
+                           data-icon="grid">
+                </td>
+            </tr>
+        </table>
+    </div><!-- /footer -->
+</div>
+</body><!-- (Foundation, 2015) -->
+</html>
